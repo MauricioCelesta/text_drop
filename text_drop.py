@@ -39,4 +39,9 @@ class VentanaTextDrop(wx.Dialog):
     def al_cancelar(self, event):
         self.EndModal(wx.ID_CANCEL)
     def al_guardar(self, event):
-        pass
+        dialogo = wx.FileDialog(self, message="Guardar documento", wildcard="Archivo de texto (*.txt) | *.txt", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT)
+        if dialogo.ShowModal() == wx.ID_CANCEL:
+            return
+        ruta = dialogo.GetPath()
+        with open(ruta, "w", encoding="utf-8") as archivo:
+            archivo.write(self.campoTexto.GetValue())
