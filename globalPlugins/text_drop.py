@@ -4,8 +4,8 @@ import ui
 import gui
 import wx
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
-    @script(description="script activado")
-    def script_activar_script(self, gesture):
+    @script(description="Abre el cuadro de edición de textDrop", gesture="kb:NVDA+0")
+    def script_ejecutar_textdrop(self, gesture):
         def abrir_ventana():
             ventana = VentanaTextDrop(gui.mainFrame)
             gui.mainFrame.prePopup()
