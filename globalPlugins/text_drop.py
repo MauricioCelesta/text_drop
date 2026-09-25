@@ -19,7 +19,7 @@ class VentanaTextDrop(wx.Dialog):
     def __init__(self, parent):
         super().__init__(parent, title="Text drop")
         self.campoTexto = wx.TextCtrl(self, style=wx.TE_MULTILINE)
-        self.etiquetaConteo = wx.StaticText(self, label="0 caracteres")
+        self.etiquetaConteo = wx.TextCtrl(self, style=wx.TE_READONLY | wx.TE_MULTILINE, value="0 caracteres")
         self.campoTexto.Bind(wx.EVT_TEXT, self.al_cambiar_texto)
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.Add(self.campoTexto, proportion=1, flag=wx.EXPAND | wx.ALL, border=10)
@@ -35,7 +35,7 @@ class VentanaTextDrop(wx.Dialog):
         self.SetSizer(sizer)
     def al_cambiar_texto(self, event):
         cantidad = len(self.campoTexto.GetValue())
-        self.etiquetaConteo.SetLabel(f"{cantidad} caracteres")
+        self.etiquetaConteo.SetValue(f"{cantidad} caracteres")
     def al_cancelar(self, event):
         self.EndModal(wx.ID_CANCEL)
     def al_guardar(self, event):
